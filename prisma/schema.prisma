@@ -1,0 +1,631 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cmi_cmifaq {
+  fid Int     @id @default(autoincrement())
+  rid Int
+  q1  String? @db.VarChar(800)
+  q2  String? @db.VarChar(800)
+  q3  String? @db.VarChar(800)
+  q4  String? @db.VarChar(800)
+  q5  String? @db.VarChar(800)
+  q6  String? @db.VarChar(800)
+  a1  String? @db.VarChar(800)
+  a2  String? @db.VarChar(800)
+  a3  String? @db.VarChar(800)
+  a4  String? @db.VarChar(800)
+  a5  String? @db.VarChar(800)
+  a6  String? @db.VarChar(800)
+
+  @@index([a1(length: 250)], map: "a1")
+  @@index([a2(length: 250)], map: "a2")
+  @@index([a3(length: 250)], map: "a3")
+  @@index([a4(length: 250)], map: "a4")
+  @@index([a5(length: 250)], map: "a5")
+  @@index([a6(length: 250)], map: "a6")
+  @@index([q1(length: 250)], map: "q1")
+  @@index([q2(length: 250)], map: "q2")
+  @@index([q3(length: 250)], map: "q3")
+  @@index([q4(length: 250)], map: "q4")
+  @@index([q5(length: 250)], map: "q5")
+  @@index([q6(length: 250)], map: "q6")
+  @@index([rid], map: "rid")
+}
+
+model cmi_reports {
+  newsId           Int       @id @default(autoincrement()) @db.UnsignedInt
+  reportstatus     Int?      @default(0)
+  CatId            Int
+  newsSubject      String    @db.Text
+  keyword          String?   @db.VarChar(200)
+  forcastyear      String    @db.VarChar(300)
+  newsLDesc        String    @db.Text
+  summary          String?   @db.Text
+  segmentation     String?   @db.Text
+  newsDate         DateTime  @db.Date
+  Price_SUL        Float
+  Price_CUL        String?   @db.VarChar(18)
+  Price_Multi      String?   @db.VarChar(20)
+  No_Pages         String    @db.VarChar(60)
+  CreatedDate      DateTime  @db.DateTime(0)
+  ModifiedDate     DateTime? @db.DateTime(0)
+  IsActive         Int       @default(1)
+  discount         String?   @db.VarChar(10)
+  meta_title       String?   @db.VarChar(400)
+  meta_description String?   @db.VarChar(500)
+  meta_keywords    String?   @db.VarChar(900)
+  CustomName       String?   @db.VarChar(300)
+  admin_id         Int
+  keywords         String?   @db.VarChar(900)
+  translateStatus  Int       @default(0)
+
+  @@index([CatId], map: "CatId")
+  @@index([CreatedDate], map: "CreatedDate")
+  @@index([CustomName], map: "CustomName")
+  @@index([IsActive], map: "IsActive")
+  @@index([No_Pages], map: "No_Pages")
+  @@index([Price_CUL], map: "Price_CUL")
+  @@index([Price_Multi], map: "Price_Multi")
+  @@index([Price_SUL], map: "Price_SUL")
+  @@index([keyword], map: "keyword")
+  @@index([keywords(length: 333)], map: "keywords")
+  @@index([meta_description(length: 333)], map: "meta_description")
+  @@index([meta_keywords(length: 333)], map: "meta_keywords")
+  @@index([meta_title(length: 333)], map: "meta_title")
+  @@index([newsDate], map: "newsDate")
+  @@index([newsId], map: "newsId")
+  @@index([newsSubject(length: 333)], map: "newsSubject")
+  @@index([newsSubject(length: 333)], map: "newsSubject_2")
+  @@index([reportstatus], map: "reportstatus")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_de {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_fr {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_it {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_ja {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_ko {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_pt {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_ru {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model cmi_cmifaq_translation_zh {
+  fid            Int      @id @default(autoincrement())
+  rid            Int      @unique(map: "unique key")
+  q1             String?  @db.VarChar(800)
+  q2             String?  @db.VarChar(800)
+  q3             String?  @db.VarChar(800)
+  q4             String?  @db.VarChar(800)
+  q5             String?  @db.VarChar(800)
+  q6             String?  @db.VarChar(800)
+  a1             String?  @db.Text
+  a2             String?  @db.Text
+  a3             String?  @db.Text
+  a4             String?  @db.Text
+  a5             String?  @db.Text
+  a6             String?  @db.Text
+  translatedDate DateTime @default(now()) @db.Date
+  updatedDate    DateTime @default(now()) @db.Date
+}
+
+model cmi_RegionalChinese {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalFrench {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalGerman {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalItalian {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalJapanese {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalKorean {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalPortuguese {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_RegionalRussian {
+  trid                                Int       @id @default(autoincrement())
+  rid                                 Int       @unique(map: "rid_2")
+  Summary                             String?   @db.Text
+  newsSubject                         String    @db.VarChar(900)
+  keyword                             String    @db.VarChar(400)
+  meta_title                          String    @db.VarChar(200)
+  meta_description                    String    @db.VarChar(400)
+  meta_keywords                       String    @db.VarChar(600)
+  Market_Size_Trends                  String?   @db.Text
+  Market_Concentration_Comp_Landscape String?   @db.Text
+  Key_Analyst_Takeaways               String?   @db.Text
+  Regional_Insights                   String?   @db.Text
+  Report_Scope_Table                  String?   @db.Text
+  Key_Developments                    String?   @db.Text
+  Report_Segmentation                 String?   @db.Text
+  Insight1_Header                     String?   @db.VarChar(400)
+  Insight1_Description                String?   @db.Text
+  Insight2_Header                     String?   @db.VarChar(400)
+  Insight2_Description                String?   @db.Text
+  Insight3_Header                     String?   @db.VarChar(400)
+  Insight3_Description                String?   @db.Text
+  Insight4_Header                     String?   @db.VarChar(400)
+  Insight4_Description                String?   @db.Text
+  Insight5_Header                     String?   @db.VarChar(400)
+  Insight5_Description                String?   @db.Text
+  TransDate                           DateTime? @db.Date
+  UpdatedDate                         DateTime? @db.Date
+
+  @@index([Insight1_Header], map: "Insight1_Header")
+  @@index([Insight2_Header], map: "Insight2_Header")
+  @@index([Insight3_Header], map: "Insight3_Header")
+  @@index([Insight4_Header], map: "Insight4_Header")
+  @@index([Insight5_Header], map: "Insight5_Header")
+  @@index([TransDate], map: "TransDate")
+  @@index([UpdatedDate], map: "UpdatedDate")
+  @@index([keyword], map: "keyword")
+  @@index([meta_description], map: "meta_description")
+  @@index([meta_keywords], map: "meta_keywords")
+  @@index([meta_title], map: "meta_title")
+  @@index([newsSubject(length: 768)], map: "newsSubject")
+  @@index([rid], map: "rid")
+  @@index([trid], map: "trid")
+}
+
+model cmi_reportsummery {
+  sid                                 Int     @id @default(autoincrement())
+  nid                                 Int
+  Market_Size_Trends                  String? @db.Text
+  Market_Concentration_Comp_Landscape String? @db.Text
+  Key_Analyst_Takeaways               String? @db.Text
+  Regional_Insights                   String? @db.Text
+  Report_Scope_Table                  String? @db.Text
+  Key_Developments                    String? @db.Text
+  Report_Segmentation                 String? @db.Text
+  Insight1_Header                     String? @db.VarChar(400)
+  Insight1_Description                String? @db.Text
+  Insight2_Header                     String? @db.VarChar(400)
+  Insight2_Description                String? @db.Text
+  Insight3_Header                     String? @db.VarChar(400)
+  Insight3_Description                String? @db.Text
+  Insight4_Header                     String? @db.VarChar(400)
+  Insight4_Description                String? @db.Text
+  Insight5_Header                     String? @db.VarChar(400)
+  Insight5_Description                String? @db.Text
+  TranslateStatus                     Int     @default(0)
+
+  @@index([nid], map: "nid")
+}
