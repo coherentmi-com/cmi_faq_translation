@@ -33,7 +33,7 @@ async function translateReport(rid: number, lang: string) {
   //fetch the report from Database
   const faqs = await getFAQS(rid);
 
-  console.log('Translating the Faqs in :', lang);
+  console.log('Translating the Faqs of report ' + rid + ' in :', lang);
 
   if (faqs) {
     const Values = Object.values(faqs);

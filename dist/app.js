@@ -31,6 +31,12 @@ function getFAQS(id) {
 //Translate the Single Report
 function translateReport(rid, lang) {
     return __awaiter(this, void 0, void 0, function* () {
+        //Precheck if the report is already translated
+        const isPresent = yield isReportTraslated(rid, lang);
+        if (isPresent) {
+            console.log('Faqs with ID ' + rid + ' is already translated!');
+            return;
+        }
         //fetch the report from Database
         const faqs = yield getFAQS(rid);
         console.log('Translating the Faqs in :', lang);
@@ -266,6 +272,67 @@ function translateReport(rid, lang) {
         }
     });
 }
+function isReportTraslated(reportId, locale) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let report;
+            switch (locale) {
+                case 'fr':
+                    report = yield prismaClient.cmi_cmifaq_translation_fr.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'it':
+                    report = yield prismaClient.cmi_cmifaq_translation_it.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'de':
+                    report = yield prismaClient.cmi_cmifaq_translation_de.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'zh':
+                    report = yield prismaClient.cmi_cmifaq_translation_zh.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'ru':
+                    report = yield prismaClient.cmi_cmifaq_translation_ru.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'ko':
+                    report = yield prismaClient.cmi_cmifaq_translation_ko.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'ja':
+                    report = yield prismaClient.cmi_cmifaq_translation_ja.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                case 'pt':
+                    report = yield prismaClient.cmi_cmifaq_translation_pt.findFirst({
+                        where: { rid: reportId },
+                    });
+                    break;
+                default:
+                    return false;
+            }
+            if (report === null) {
+                return false;
+            }
+            return true;
+        }
+        catch (err) {
+            console.log({
+                message: 'Got error while checking if Faqs are alredy translated -> ' + err,
+                level: 'error',
+            });
+        }
+    });
+}
 function sendToTranslate(rid) {
     return __awaiter(this, void 0, void 0, function* () {
         const limit = pLimit(8);
@@ -285,7 +352,7 @@ function translate() {
                 },
                 where: {
                     rid: {
-                        lte: 5,
+                        lte: 10,
                     },
                 },
             });
